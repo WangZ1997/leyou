@@ -46,6 +46,7 @@ public class SmsListener {
         SendSmsResponse resp = this.smsUtils.sendSms(phone, code,
                 prop.getSignName(),
                 prop.getVerifyCodeTemplate());
+        //test
 
     }
 }
