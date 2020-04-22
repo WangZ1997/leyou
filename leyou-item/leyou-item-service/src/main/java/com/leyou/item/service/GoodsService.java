@@ -11,6 +11,7 @@ import com.leyou.item.pojo.SpuDetail;
 import com.leyou.item.pojo.Stock;
 import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.jcajce.provider.util.SecretKeyUtil;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,8 @@ public class GoodsService {
     private StockMapper stockMapper;
     @Autowired
     private SpuDetailMapper spuDetailMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     public PageResult<SpuBo> querySpuBoByPage(String key, Boolean saleable, Integer page, Integer rows) {
 
@@ -104,6 +107,7 @@ public class GoodsService {
         this.spuDetailMapper.insertSelective(spuDetail);
 
         saveSkuAndStock(spuBo);
+        sendMessage("insert",spuBo.getId());
     }
 
     private void saveSkuAndStock(SpuBo spuBo) {
@@ -119,6 +123,7 @@ public class GoodsService {
             stock.setSkuId(sku.getId());
             stock.setStock(sku.getStock());
             this.stockMapper.insertSelective(stock);
+
         });
     }
     /**
@@ -175,9 +180,19 @@ public class GoodsService {
 
         // 更新spu详情
         this.spuDetailMapper.updateByPrimaryKeySelective(spu.getSpuDetail());
+        this.sendMessage("update",spu.getId());
     }
     public Spu querySpuById(Long id) {
         return this.spuMapper.selectByPrimaryKey(id);
+    }
+
+    private void sendMessage( String type,Long id){
+        // 发送消息
+        try {
+            this.amqpTemplate.convertAndSend("item." + type, id);
+        } catch (Exception e) {
+            //logger.error("{}商品消息发送异常，商品id：{}", type, id, e);
+        }
     }
 
 

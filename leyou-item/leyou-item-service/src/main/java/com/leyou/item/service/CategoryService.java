@@ -21,7 +21,7 @@ public class CategoryService {
       */
      public List<Category> queryCategoriesByPid(Long pid) {
           Category record = new Category();
-          record.setParentId(pid);
+          record.setIsParentId(pid);
           return this.categoryMapper.select(record);
      }
      public List<String> queryNamesByIds(List<Long> ids) {

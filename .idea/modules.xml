@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/leyou-protal/leyou-protal.iml" filepath="$PROJECT_DIR$/leyou-protal/leyou-protal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leyou-user/leyou-user-interface/leyou-user-interface.iml" filepath="$PROJECT_DIR$/leyou-user/leyou-user-interface/leyou-user-interface.iml" />
     </modules>
   </component>
 </project>
