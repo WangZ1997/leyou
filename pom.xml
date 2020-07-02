@@ -40,7 +40,7 @@
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <spring-boot-dependencies.version>2.2.5.RELEASE</spring-boot-dependencies.version>
         <spring-boot-starter-parent.version>2.2.5.RELEASE</spring-boot-starter-parent.version>
-        <mysql-connector-java.version>5.1.48</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <mybatis-spring-boot-starter.version>1.3.3</mybatis-spring-boot-starter.version>
         <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
         <pagehelper-spring-boot-starter.version>1.2.13</pagehelper-spring-boot-starter.version>
